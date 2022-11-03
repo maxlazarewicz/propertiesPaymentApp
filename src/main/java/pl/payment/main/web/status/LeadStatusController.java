@@ -7,8 +7,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import pl.payment.main.domain.client.FileData;
+import pl.payment.main.domain.client.FileDataClient;
 import pl.payment.main.domain.models.status.LeadStatus;
 import pl.payment.main.domain.service.status.LeadStatusService;
+
+import java.io.File;
+
 @Slf4j
 @RestController
 @RequestMapping("/leadstatus")
@@ -17,7 +22,15 @@ import pl.payment.main.domain.service.status.LeadStatusService;
 public class LeadStatusController {
 
     @Autowired
+    FileDataClient fileDataClient;
+    @Autowired
     LeadStatusService leadStatusService;
+
+   @PostMapping("/addfiledata")
+   @PreAuthorize("permitAll")
+   public ResponseEntity addFileData(@RequestBody FileData fileData){
+       return new ResponseEntity(fileDataClient.addFileData(fileData), HttpStatus.OK);
+   }
 
     @GetMapping("/list")
     @PreAuthorize("permitAll")

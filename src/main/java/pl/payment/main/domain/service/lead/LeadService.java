@@ -4,9 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.payment.main.domain.client.FileDataClient;
 import pl.payment.main.domain.models.lead.Lead;
 import pl.payment.main.domain.repository.lead.LeadRepository;
+import pl.payment.main.domain.service.filedata.FileDataService;
 import pl.payment.main.domain.utils.Commons;
+import pl.payment.main.web.lead.AddLeadPayload;
 
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
@@ -19,6 +22,8 @@ public class LeadService extends Commons {
 
     @Autowired
     LeadRepository leadRepository;
+    @Autowired
+    FileDataService fileDataService;
 
     @Transactional
     public List<Lead> getAllLeads() {
@@ -31,14 +36,16 @@ public class LeadService extends Commons {
     }
 
     @Transactional
-    public Lead addLead(Lead lead) {
-        lead.setOwner(getPrincipal());
+    public Lead addLead(AddLeadPayload addLeadPayload) {
+        addLeadPayload.getLead().setOwner(getPrincipal());
+        fileDataService.addFilesFromList(addLeadPayload.getFileDataList());
 
-        return leadRepository.saveAndFlush(lead);
+        return leadRepository.saveAndFlush(addLeadPayload.getLead());
     }
 
     @Transactional
     public void deleteLead(Long id) {
         leadRepository.deleteById(id);
     }
+
 }

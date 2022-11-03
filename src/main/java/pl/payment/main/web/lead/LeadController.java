@@ -36,8 +36,8 @@ public class LeadController {
 
     @PostMapping("/add")
     @PreAuthorize("permitAll")
-    public ResponseEntity addLead(@RequestBody Lead lead){
-        return new ResponseEntity(leadService.addLead(lead), HttpStatus.OK);
+    public ResponseEntity addLead(@RequestBody AddLeadPayload addLeadPayload){
+        return new ResponseEntity(leadService.addLead(addLeadPayload), HttpStatus.OK);
     }
     @DeleteMapping("/delete")
     @PreAuthorize("permitAll")
