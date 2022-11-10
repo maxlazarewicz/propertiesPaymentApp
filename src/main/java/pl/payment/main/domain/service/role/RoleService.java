@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.payment.main.domain.mail.MailService;
 import pl.payment.main.domain.models.roles.Roles;
 import pl.payment.main.domain.repository.role.RoleRepository;
 
@@ -19,9 +20,12 @@ public class RoleService {
 
     @Autowired
     RoleRepository roleRepository;
+    @Autowired
+    MailService mailService;
 
     @Transactional
     public List<Roles> getAllRoles() {
+       mailService.sendContactMail();
         return roleRepository.findAll();
     }
 
