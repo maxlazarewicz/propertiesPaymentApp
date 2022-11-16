@@ -1,4 +1,4 @@
-package pl.payment.main.domain.client;
+package pl.payment.main.domain.client.filedata;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

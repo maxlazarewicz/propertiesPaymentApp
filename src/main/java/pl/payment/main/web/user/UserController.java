@@ -15,6 +15,7 @@ import pl.payment.main.domain.service.user.UserService;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @AllArgsConstructor
 public class UserController {
+
     @Autowired
     UserService userService;
 

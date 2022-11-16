@@ -25,7 +25,6 @@ public class RoleService {
 
     @Transactional
     public List<Roles> getAllRoles() {
-       mailService.sendContactMail();
         return roleRepository.findAll();
     }
 

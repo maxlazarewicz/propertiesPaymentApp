@@ -33,17 +33,19 @@ public class AppConfig {
     @Bean
     public JavaMailSender javaMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-        mailSender.setHost(mailProperties.getHost());
-        mailSender.setPort(mailProperties.getPort());
-        mailSender.setUsername(mailProperties.getUsername());
-        mailSender.setPassword(mailProperties.getPassword());
-        mailSender.setDefaultEncoding(mailProperties.getDefaultEncoding());
+        mailSender.setHost("smtp.gmail.com");
+        mailSender.setPort(465);
+        mailSender.setUsername("testykorepetycje@gmail.com");
+        mailSender.setPassword("eelaktandxxaiuzk");
+        mailSender.setDefaultEncoding("UTF-8");
         Properties props = mailSender.getJavaMailProperties();
-        props.put("mail.transport.protocol", mailProperties.getTransportProtocol());
-        props.put("mail.smtp.auth", mailProperties.getSmtpAuth());
-        props.put("mail.smtp.starttls.enable", mailProperties.getSmtpStarttlsEnable());
-        props.put("mail.debug", mailProperties.getDebug());
-        props.put("mail.smtp.ssl.trust", "drukarnia-dako.pl");
+        props.put("mail.transport.protocol", "smtp");
+        props.put("mail.smtp.port", "465");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.ssl.enable", "true");
+        props.put("mail.smtp.starttls.required", "true");
+        props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
 
         return mailSender;
     }
