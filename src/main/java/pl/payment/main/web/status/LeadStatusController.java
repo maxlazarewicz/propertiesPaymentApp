@@ -36,7 +36,7 @@ public class LeadStatusController {
         return new ResponseEntity(leadStatusService.getAllStatus(), HttpStatus.OK);
     }
 
-    @GetMapping("/leadstatus/{id}")
+    @GetMapping("/{id}")
     @PreAuthorize("permitAll")
     public ResponseEntity getLeadStatusById(@PathVariable Long id){
         return new ResponseEntity(leadStatusService.getStatusById(id), HttpStatus.OK);

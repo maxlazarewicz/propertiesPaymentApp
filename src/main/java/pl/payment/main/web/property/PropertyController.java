@@ -25,7 +25,7 @@ public class PropertyController {
         return new ResponseEntity(propertyService.getAllProperty(), HttpStatus.OK);
     }
 
-    @GetMapping("/property/{id}")
+    @GetMapping("/{id}")
     @PreAuthorize("permitAll")
     public ResponseEntity getPropertyById(@PathVariable Long id) {
         return new ResponseEntity((propertyService.getPropertyById(id)), HttpStatus.OK);

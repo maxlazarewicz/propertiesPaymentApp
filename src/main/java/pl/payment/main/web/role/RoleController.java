@@ -26,7 +26,7 @@ public class RoleController {
         return new ResponseEntity(roleService.getAllRoles(), HttpStatus.OK);
     }
 
-    @GetMapping("/role/{id}")
+    @GetMapping("/{id}")
     @PreAuthorize("permitAll")
     public ResponseEntity getRoleById(@PathVariable Long id) {
         return new ResponseEntity(roleService.getRoleById(id), HttpStatus.OK);

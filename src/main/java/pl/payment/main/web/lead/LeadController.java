@@ -28,8 +28,9 @@ public class LeadController {
         return new ResponseEntity(leadService.getAllLeads(), HttpStatus.OK);
     }
 
-    @GetMapping("/lead/{id}")
+    @GetMapping("/{id}")
     @PreAuthorize("permitAll")
+    @Operation(summary = "Showing lead by ID")
     public ResponseEntity getLeadById(@PathVariable Long id) {
         return new ResponseEntity((leadService.getLeadById(id)), HttpStatus.OK);
     }

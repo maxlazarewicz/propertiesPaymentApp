@@ -25,7 +25,7 @@ public class UserController {
         return new ResponseEntity(userService.getAllUsers(), HttpStatus.OK);
     }
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/{id}")
     @PreAuthorize("permitAll")
     public ResponseEntity getUserById(@PathVariable Long id) {
         return new ResponseEntity((userService.getUserById(id)), HttpStatus.OK);
