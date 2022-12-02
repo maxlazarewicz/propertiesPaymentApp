@@ -31,6 +31,15 @@ public class PropertyService {
     public Property addProperty(Property property){return propertyRepository.saveAndFlush(property);}
 
     @Transactional
+    public void updateProperty(Long id, Property property) {
+        Property oldProperty = getPropertyById(id);
+        oldProperty.setApartment_number(property.getApartment_number());
+        oldProperty.setCity(property.getCity());
+        oldProperty.setHouse_number(property.getHouse_number());
+        oldProperty.setPostal_code(property.getPostal_code());
+        addProperty(oldProperty);
+    }
+    @Transactional
     public void deleteProperty(Long id){propertyRepository.deleteById(id);}
 
 }

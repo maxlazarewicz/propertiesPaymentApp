@@ -33,13 +33,21 @@ public class PropertyController {
     @PostMapping("/add")
     @PreAuthorize("permitAll")
     public ResponseEntity addProperty(@RequestBody Property property){
-        return new ResponseEntity(propertyService.addProperty(property), HttpStatus.OK);
+        return new ResponseEntity(propertyService.addProperty(property), HttpStatus.CREATED);
     }
+    @PutMapping("/update")
+    @PreAuthorize("permitAll")
+    public ResponseEntity updatePropertyById(@PathVariable Long id, @RequestBody Property property){
+        propertyService.updateProperty(id, property);
+        return new ResponseEntity( HttpStatus.OK);
+    }
+
     @DeleteMapping("/delete")
     @PreAuthorize("permitAll")
     public ResponseEntity deleteProperty(@PathVariable Long id){
         propertyService.deleteProperty(id);
         return new ResponseEntity("Property with id " + id + " has deleted succesfull. ", HttpStatus.OK);
     }
+
 
 }
