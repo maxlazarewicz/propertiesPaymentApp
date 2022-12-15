@@ -35,14 +35,14 @@ public class PropertyController {
     public ResponseEntity addProperty(@RequestBody Property property){
         return new ResponseEntity(propertyService.addProperty(property), HttpStatus.CREATED);
     }
-    @PutMapping("/update")
+    @PutMapping("/update/{id}")
     @PreAuthorize("permitAll")
     public ResponseEntity updatePropertyById(@PathVariable Long id, @RequestBody Property property){
         propertyService.updateProperty(id, property);
         return new ResponseEntity( HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/delete/{id}")
     @PreAuthorize("permitAll")
     public ResponseEntity deleteProperty(@PathVariable Long id){
         propertyService.deleteProperty(id);

@@ -34,7 +34,8 @@ public class Lead {
 
     @ManyToOne(
             optional = false,
-            targetEntity = Property.class
+            targetEntity = Property.class,
+            cascade = CascadeType.ALL
     )
     @JoinColumn(name = "property_id")
     private Property property;

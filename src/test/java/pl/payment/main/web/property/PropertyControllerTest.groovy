@@ -49,14 +49,37 @@ class PropertyControllerTest extends Specification {
         then:
         response != null
         response.status == HttpStatus.OK.value()
-//        and:
-//////        with(objectMapper.readValue(response.contentAsString, Map)){
-//////
-//////        }
+        List properties = Arrays.asList(objectMapper.readValue(response.getContentAsString(), Property[].class))
+        properties.get(0).getId() == 1
+        properties.get(0).getApartment_number() == 23
+        properties.get(0).getCity() == "Warszawa"
+        properties.get(0).getHouse_number() == 1
+        properties.get(0).getPostal_code() == "61-222"
+        properties.get(0).getProvince() == "Mazowieckie"
+        properties.get(0).getStreet() == "Test1"
+
     }
+
+    def 'Should return property and HTTP 200'() {
+        when:
+        def response = mvc.perform(MockMvcRequestBuilders.get("/property/1")).andReturn().response
+
+        then:
+        response != null
+        response.status == HttpStatus.OK.value()
+        Property properties = objectMapper.readValue(response.getContentAsString(), Property.class)
+        properties.getId() == 1
+        properties.getApartment_number() == 23
+        properties.getCity() == "Warszawa"
+        properties.getHouse_number() == 1
+        properties.getPostal_code() == "61-222"
+        properties.getProvince() == "Mazowieckie"
+        properties.getStreet() == "Test1"
+    }
+
     def 'Should change property and return 200'() {
         when:
-        def response = mvc.perform(MockMvcRequestBuilders.put("/property/2").
+        def response = mvc.perform(MockMvcRequestBuilders.put("/property/update/2").
                 contentType(MediaType.APPLICATION_JSON).content(objectMapper.writeValueAsString(getValidProperty())))
                 .andReturn().response
         then:
@@ -70,6 +93,15 @@ class PropertyControllerTest extends Specification {
                 .andReturn().response
         then:
         response.status == HttpStatus.CREATED.value()
+    }
+
+    def 'Should delete property and HTTP 200'() {
+        when:
+        def response = mvc.perform(MockMvcRequestBuilders.delete("/property/delete/2")).andReturn().response
+
+        then:
+        response != null
+        response.status == HttpStatus.OK.value()
     }
 
     def getValidProperty() {
