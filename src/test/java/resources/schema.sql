@@ -1,6 +1,6 @@
 create SCHEMA IF NOT EXISTS payment;
 
-drop table IF EXISTS `file_data`;
+drop table IF EXISTS `file_data` cascade;
 create TABLE `file_data` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `added_day` datetime DEFAULT NULL,
@@ -9,14 +9,14 @@ create TABLE `file_data` (
   `original_file_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
-drop table IF EXISTS `lead_status`;
+drop table IF EXISTS `lead_status` cascade;
 create TABLE `lead_status` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `full_name` varchar(50) DEFAULT NULL,
   `name` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
-drop table IF EXISTS `property`;
+drop table IF EXISTS `property` cascade;
 create TABLE `property` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `apartment_number` int NOT NULL,
@@ -27,13 +27,14 @@ create TABLE `property` (
   `street` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
-drop table IF EXISTS `roles`;
+drop table IF EXISTS `roles` cascade;
 create TABLE `roles` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
   `translated_name` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
+drop table IF EXISTS `users` cascade ;
 create TABLE `users` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `email` varchar(50) DEFAULT NULL,

@@ -79,7 +79,7 @@ class PropertyControllerTest extends Specification {
 
     def 'Should change property and return 200'() {
         when:
-        def response = mvc.perform(MockMvcRequestBuilders.put("/property/update/2").
+        def response = mvc.perform(MockMvcRequestBuilders.put("/property/update/1").
                 contentType(MediaType.APPLICATION_JSON).content(objectMapper.writeValueAsString(getValidProperty())))
                 .andReturn().response
         then:
@@ -97,7 +97,7 @@ class PropertyControllerTest extends Specification {
 
     def 'Should delete property and HTTP 200'() {
         when:
-        def response = mvc.perform(MockMvcRequestBuilders.delete("/property/delete/2")).andReturn().response
+        def response = mvc.perform(MockMvcRequestBuilders.delete("/property/delete/3")).andReturn().response
 
         then:
         response != null
@@ -106,7 +106,7 @@ class PropertyControllerTest extends Specification {
 
     def getValidProperty() {
         return Property.builder()
-                .id(2)
+                .id(4)
                 .postal_code("66-666")
                 .city("Wawa")
                 .house_number(7)
