@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.payment.main.domain.models.property.Property;
 import pl.payment.main.domain.models.users.Users;
 import pl.payment.main.domain.repository.user.UserRepository;
 
@@ -35,6 +36,16 @@ public class UserService {
         return userRepository.saveAndFlush(user);
     }
 
+    @Transactional
+    public void updateUser(Long id, Users users) {
+        Users oldUser = getUserById(id);
+        oldUser.setUsername(users.getUsername());
+        oldUser.setFirstName(users.getFirstName());
+        oldUser.setLastName(users.getLastName());
+        oldUser.setEmail(users.getEmail());
+        oldUser.setPassword(users.getPassword());
+        addUser(oldUser);
+    }
     @Transactional
     public void deleteUser(Long id) {
         userRepository.deleteById(id);

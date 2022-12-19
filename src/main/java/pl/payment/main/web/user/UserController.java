@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import pl.payment.main.domain.models.property.Property;
 import pl.payment.main.domain.models.users.Users;
 import pl.payment.main.domain.service.user.UserService;
 @Slf4j
@@ -35,6 +36,13 @@ public class UserController {
     @PreAuthorize("permitAll")
     public ResponseEntity addUser(@RequestBody Users user) {
         return new ResponseEntity(userService.addUser(user), HttpStatus.OK);
+    }
+
+    @PutMapping("/update/{id}")
+    @PreAuthorize("permitAll")
+    public ResponseEntity updatePropertyById(@PathVariable Long id, @RequestBody Users users){
+        userService.updateUser(id, users);
+        return new ResponseEntity( HttpStatus.OK);
     }
 
     @DeleteMapping("/delete")
