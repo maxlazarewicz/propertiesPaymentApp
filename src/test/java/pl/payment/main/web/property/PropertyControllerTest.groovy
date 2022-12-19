@@ -37,7 +37,7 @@ class PropertyControllerTest extends Specification {
     @Shared
     ObjectMapper objectMapper;
 
-    //Wykonuje sie za kazdym jednym pojedynczym tescie
+
     def setupSpec() {
         objectMapper = new ObjectMapper();
     }

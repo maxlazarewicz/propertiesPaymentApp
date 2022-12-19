@@ -20,7 +20,7 @@ insert into `roles` VALUES
 (3, 'ROLE_OWNER', 'Owner');
 
 insert into `users` values
-(1, 'mx_94', 'mxlazarewicz@gmail.com', 'Maks', 'Lazarewocz', 'pass123', '509411644'),
+(1, 'mxlazarewicz@gmail.com', 'Maks', 'Lazarewicz', 'pass123', '509411644', 'mx_94'),
 (2, 'mat34', 'mxlazarewicz@gmail.com', 'Mateusz', 'Kowalski', 'paspas123', '678097654'),
 (3, 'kat24', 'mxlazarewicz@gmail.com', 'Katarzyna', 'Kowalska', 'paspaspas321', '540340230');
 
