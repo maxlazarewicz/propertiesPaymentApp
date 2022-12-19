@@ -56,4 +56,21 @@ class UserControllerTest extends Specification {
         users.get(0).getPassword() == "pass123"
         users.get(0).getPhoneNumber() == "509411644"
     }
+    def 'Should return user and HTTP 200'(){
+        when:
+        def response = mvc.perform(MockMvcRequestBuilders.get("/user/1")).andReturn().response
+
+        then:
+        response != null
+        response.status == HttpStatus.OK.value()
+
+        Users users = objectMapper.readValue(response.getContentAsString(), Users.class)
+        users.getId() == 1
+        users.getUsername() == "mx_94"
+        users.getEmail() == "mxlazarewicz@gmail.com"
+        users.getFirstName() == "Maks"
+        users.getLastName() == "Lazarewicz"
+        users.getPassword() == "pass123"
+        users.getPhoneNumber() == "509411644"
+    }
 }
