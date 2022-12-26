@@ -87,6 +87,15 @@ class UserControllerTest extends Specification {
         response.status == HttpStatus.OK.value()
     }
 
+    def 'Should delete user and Http 200'(){
+        when:
+        def response=mvc.perform(MockMvcRequestBuilders.delete("/user/delete/1")).andReturn().response
+
+        then:
+        response!= null
+        response.status == HttpStatus.OK.value()
+    }
+
     def getValidUser() {
         return Users.builder()
                 .id(3)
@@ -96,7 +105,7 @@ class UserControllerTest extends Specification {
                 .lastName("Koperek")
                 .phoneNumber("509411644")
                 .password("pll122")
-
+                .build()
     }
 
 }

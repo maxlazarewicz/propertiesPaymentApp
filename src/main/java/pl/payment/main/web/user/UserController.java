@@ -45,7 +45,7 @@ public class UserController {
         return new ResponseEntity( HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/delete/{id}")
     @PreAuthorize("permitAll")
     public ResponseEntity deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
