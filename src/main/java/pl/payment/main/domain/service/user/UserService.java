@@ -1,12 +1,16 @@
 package pl.payment.main.domain.service.user;
 
+import jdk.jshell.spi.ExecutionControl;
 import lombok.AllArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.payment.main.domain.models.property.Property;
 import pl.payment.main.domain.models.users.Users;
 import pl.payment.main.domain.repository.user.UserRepository;
+import pl.payment.main.infrastructure.config.errorcode.ErrorCode;
+import pl.payment.main.infrastructure.config.exceptions.UserException;
 
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
@@ -25,10 +29,11 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    @SneakyThrows
     @Transactional
     public Users getUserById(Long id) {
         return userRepository.findById(id).
-                orElseThrow(() -> new EntityNotFoundException("User with id:" + id + " not found."));
+                orElseThrow(() -> new UserException(ErrorCode.USER_NOT_FOUND_MESSAGE));
     }
 
     @Transactional

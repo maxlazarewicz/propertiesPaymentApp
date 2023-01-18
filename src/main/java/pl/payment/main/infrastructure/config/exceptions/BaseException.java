@@ -7,5 +7,10 @@ import pl.payment.main.infrastructure.config.errorcode.ErrorCode;
 public class BaseException extends Exception {
 
     private ErrorCode errorCode;
-    
+
+    public BaseException(ErrorCode errorCode) {
+        super();
+        this.errorCode = errorCode;
+        FormatException.withErrorCode(errorCode);
+    }
 }
