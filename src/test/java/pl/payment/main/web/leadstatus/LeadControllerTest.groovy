@@ -1,4 +1,4 @@
-package pl.payment.main.web.property.leadstatus
+package pl.payment.main.web.leadstatus
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
@@ -24,14 +24,7 @@ import spock.lang.Specification
 @EnableJpaRepositories(basePackages = "pl.payment.main.domain.*")
 @EntityScan(basePackages = "pl.payment.main.domain.*")
 @EnableWebMvc
-@SpringBootTest(classes =
-[
-        LeadController.class,
-        LeadStatusService.class,
-        LeadStatusRepository.class,
-        LeadStatus.class,
-        TestConfig.class
-] )
+@SpringBootTest
 
 class LeadStatusControllerTest extends Specification {
 
@@ -54,13 +47,13 @@ class LeadStatusControllerTest extends Specification {
         response.status == HttpStatus.OK.value()
         List lead = Arrays.asList(objectMapper.readValue(response.getContentAsString(), Lead[].class))
         lead.get(0).getId() == 1
-        lead.get(0).getCreation_date() == "2022-10-26 18:31:08"
+        lead.get(0).getCreation_date().toString() == "Wed Oct 26 18:31:08 CEST 2022"
         lead.get(0).getEnding_date() == null
         lead.get(0).getAdministrativeRent() == "333"
         lead.get(0).getElectricityPayment() == "123"
         lead.get(0).getWaterPayment() == "222"
-        lead.get(0).getLeadStatus() == 1
-        lead.get(0).getProperty() == 1
+        lead.get(0).getLeadStatus().getId() == 1
+        lead.get(0).getProperty().getId() == 1
         lead.get(0).getOwner() == "owner"
         lead.get(0).getTenant() == "tenant"
 

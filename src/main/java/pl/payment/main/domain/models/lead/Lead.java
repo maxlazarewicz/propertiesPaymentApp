@@ -10,6 +10,7 @@ import pl.payment.main.domain.models.users.Users;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 
 @Entity
@@ -26,11 +27,11 @@ public class Lead {
 
     @CreationTimestamp
     @DateTimeFormat
-    private LocalDateTime creation_date;
+    private Date creation_date;
 
     @DateTimeFormat
     //@UpdateTimestamp??? Tworzy w momencie update'a date w bazie danych w tym wypadku.
-    private LocalDateTime ending_date;
+    private Date ending_date;
 
     @ManyToOne(
             optional = false,

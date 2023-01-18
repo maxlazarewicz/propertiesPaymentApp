@@ -26,7 +26,7 @@ public class LeadStatusService {
 
     @Transactional
     public LeadStatus getStatusById(Long id) {
-        return leadStatusRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Role with id " + id + " not found"));
+        return leadStatusRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Lead Status with id " + id + " not found"));
     }
     @Transactional
     public LeadStatus addStatus(LeadStatus leadStatus) {

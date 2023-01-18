@@ -1,4 +1,4 @@
-package pl.payment.main.web.property.user
+package pl.payment.main.web.user
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
@@ -14,7 +14,6 @@ import pl.payment.main.domain.models.users.Users
 import pl.payment.main.domain.repository.user.UserRepository
 import pl.payment.main.domain.service.user.UserService
 import pl.payment.main.infrastructure.config.TestConfig
-import pl.payment.main.web.user.UserController
 import spock.lang.Shared
 import spock.lang.Specification
 import org.springframework.http.HttpStatus
@@ -23,13 +22,7 @@ import org.springframework.http.HttpStatus
 @EnableJpaRepositories(basePackages = "pl.payment.main.domain.*")
 @EntityScan(basePackages = "pl.payment.main.domain.*")
 @EnableWebMvc
-@SpringBootTest(classes =
-[
-        UserController.class,
-        UserService.class,
-        UserRepository.class,
-        TestConfig.class
-] )
+@SpringBootTest
 
 class UserControllerTest extends Specification {
 

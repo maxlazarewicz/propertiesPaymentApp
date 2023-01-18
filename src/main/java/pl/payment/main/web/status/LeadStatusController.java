@@ -46,7 +46,7 @@ public class LeadStatusController {
     public ResponseEntity addLeadStatus(@RequestBody LeadStatus leadStatus){
         return new ResponseEntity(leadStatusService.addStatus(leadStatus), HttpStatus.OK);
     }
-    @DeleteMapping("/delete")
+    @DeleteMapping("/delete/{id}")
     @PreAuthorize("permitAll")
     public ResponseEntity deleteLeadStatus(@PathVariable Long id){
         leadStatusService.deleteStatus(id);

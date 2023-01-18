@@ -22,13 +22,7 @@ import spock.lang.Specification
 @EnableJpaRepositories(basePackages = "pl.payment.main.domain.*")
 @EntityScan(basePackages = "pl.payment.main.domain.*")
 @EnableWebMvc
-@SpringBootTest(classes =
-        [
-                PropertyController.class,
-                PropertyService.class,
-                PropertyRepository.class,
-                TestConfig.class
-        ])
+@SpringBootTest
 class PropertyControllerTest extends Specification {
 
     @Autowired
