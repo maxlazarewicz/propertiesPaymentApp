@@ -1,4 +1,4 @@
-package pl.payment.main.web.property.lead
+package pl.payment.main.web.property.leadstatus
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
@@ -11,10 +11,12 @@ import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.web.servlet.config.annotation.EnableWebMvc
 import pl.payment.main.domain.models.lead.Lead
-import pl.payment.main.domain.repository.lead.LeadRepository
-import pl.payment.main.domain.service.lead.LeadService
+import pl.payment.main.domain.models.status.LeadStatus
+import pl.payment.main.domain.repository.status.LeadStatusRepository
+import pl.payment.main.domain.service.status.LeadStatusService
 import pl.payment.main.infrastructure.config.TestConfig
 import pl.payment.main.web.lead.LeadController
+import pl.payment.main.web.status.LeadStatusController
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -25,13 +27,13 @@ import spock.lang.Specification
 @SpringBootTest(classes =
 [
         LeadController.class,
-        LeadService.class,
-        LeadRepository.class,
-        Lead.class,
+        LeadStatusService.class,
+        LeadStatusRepository.class,
+        LeadStatus.class,
         TestConfig.class
 ] )
 
-class LeadControllerTest extends Specification {
+class LeadStatusControllerTest extends Specification {
 
     @Autowired
     MockMvc mvc;
