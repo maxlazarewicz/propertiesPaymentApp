@@ -26,6 +26,8 @@ public class AppConfig {
         mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
         mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
         mapper.enable(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT);
+        mapper.configure(SerializationFeature.WRITE_ENUMS_USING_TO_STRING, true);
+        mapper.configure(DeserializationFeature.READ_ENUMS_USING_TO_STRING, true);
 
         return mapper;
     }

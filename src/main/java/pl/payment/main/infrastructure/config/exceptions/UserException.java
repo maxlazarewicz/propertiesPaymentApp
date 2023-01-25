@@ -7,7 +7,8 @@ import java.util.Map;
 public class UserException extends BaseException {
 
    public UserException(ErrorCode errorCode){
-        super(errorCode);
+
+       super(errorCode);
     }
     public UserException(ErrorCode errorCode, Map<String,?> params){
        super(errorCode,params);

@@ -1,10 +1,11 @@
 package pl.payment.main.infrastructure.config.exceptions;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import pl.payment.main.infrastructure.config.errorcode.ErrorCode;
 
 import java.util.Map;
-
+@Getter
 @Slf4j
 public class BaseException extends RuntimeException {
 

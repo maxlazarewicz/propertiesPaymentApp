@@ -34,7 +34,7 @@ public class UserService {
     @Transactional
     public Users getUserById(Long id) {
         return userRepository.findById(id).
-                orElseThrow(() -> new UserException(ErrorCode.USER_NOT_FOUND_MESSAGE, Map.ofEntries(Map.entry("Id",id),Map.entry("Id1",id))));
+                orElseThrow(() -> new UserException(ErrorCode.USER_NOT_FOUND_MESSAGE, Map.ofEntries(Map.entry("Id",id))));
     }
 
     @Transactional

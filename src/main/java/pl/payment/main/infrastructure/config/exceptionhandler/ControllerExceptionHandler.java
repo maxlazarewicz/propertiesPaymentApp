@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
+import pl.payment.main.infrastructure.config.exceptions.UserException;
 
 import java.util.Date;
 
@@ -14,9 +15,9 @@ import java.util.Date;
 @ControllerAdvice
 public class ControllerExceptionHandler {
 
-    @ExceptionHandler(value = InvalidDataAccessApiUsageException.class)
-    public ResponseEntity handleInvalidDataAccessApiUsageException
-            (InvalidDataAccessApiUsageException exception, WebRequest request){
+    @ExceptionHandler(value = Exception.class)
+    public ResponseEntity handleException
+            (Exception exception, WebRequest request){
                 ErrorMessage em = new ErrorMessage(
                         HttpStatus.INTERNAL_SERVER_ERROR.value(),
                         new Date(),
@@ -24,5 +25,19 @@ public class ControllerExceptionHandler {
                         request.getDescription(false)
                 );
                 return new ResponseEntity(em, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(value = UserException.class)
+    public ResponseEntity handleUserException
+            (UserException userException, WebRequest request){
+        ErrorMessage em = new ErrorMessage(
+                HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                userException.getErrorCode().getCode(),
+                new Date(),
+                userException.getMessage(),
+                request.getDescription(false)
+        );
+        userException.printStackTrace();
+        return new ResponseEntity(em, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

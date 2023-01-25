@@ -1,9 +1,11 @@
 package pl.payment.main.infrastructure.config.errorcode;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 @Getter
 @AllArgsConstructor
+@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum ErrorCode {
     USER_NOT_FOUND_MESSAGE(1, "Entity User with specified id not found"),
     LEAD_STATUS_NOT_FOUND_MESSAGE(2, "Entity Lead Status with specified id not found"),
