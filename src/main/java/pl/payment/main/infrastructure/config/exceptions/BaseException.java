@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import pl.payment.main.infrastructure.config.errorcode.ErrorCode;
 
 @Slf4j
-public class BaseException extends Exception {
+public class BaseException extends RuntimeException {
 
     private ErrorCode errorCode;
 
