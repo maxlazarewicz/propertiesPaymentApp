@@ -15,6 +15,7 @@ import pl.payment.main.infrastructure.config.exceptions.UserException;
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Service
@@ -33,7 +34,7 @@ public class UserService {
     @Transactional
     public Users getUserById(Long id) {
         return userRepository.findById(id).
-                orElseThrow(() -> new UserException(ErrorCode.USER_NOT_FOUND_MESSAGE));
+                orElseThrow(() -> new UserException(ErrorCode.USER_NOT_FOUND_MESSAGE, Map.ofEntries(Map.entry("Id",id),Map.entry("Id1",id))));
     }
 
     @Transactional
