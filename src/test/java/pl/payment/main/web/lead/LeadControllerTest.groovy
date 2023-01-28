@@ -11,12 +11,6 @@ import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.web.servlet.config.annotation.EnableWebMvc
 import pl.payment.main.domain.models.lead.Lead
-import pl.payment.main.domain.models.status.LeadStatus
-import pl.payment.main.domain.repository.status.LeadStatusRepository
-import pl.payment.main.domain.service.status.LeadStatusService
-import pl.payment.main.infrastructure.config.TestConfig
-import pl.payment.main.web.lead.LeadController
-import pl.payment.main.web.status.LeadStatusController
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -47,8 +41,8 @@ class LeadStatusControllerTest extends Specification {
         response.status == HttpStatus.OK.value()
         List lead = Arrays.asList(objectMapper.readValue(response.getContentAsString(), Lead[].class))
         lead.get(0).getId() == 1
-        lead.get(0).getCreation_date().toString() == "Wed Oct 26 18:31:08 CEST 2022"
-        lead.get(0).getEnding_date() == null
+        lead.get(0).getCreationDate().toString() == "Wed Oct 26 18:31:08 CEST 2022"
+        lead.get(0).getEndingDate() == null
         lead.get(0).getAdministrativeRent() == "333"
         lead.get(0).getElectricityPayment() == "123"
         lead.get(0).getWaterPayment() == "222"
@@ -56,7 +50,33 @@ class LeadStatusControllerTest extends Specification {
         lead.get(0).getProperty().getId() == 1
         lead.get(0).getOwner() == "owner"
         lead.get(0).getTenant() == "tenant"
-
     }
 
+    def 'Should return Lead and HTTP 200'() {
+        when:
+        def response = mvc.perform(MockMvcRequestBuilders.get("/lead/1")).andReturn().response
+
+        then:
+        response != null
+        response.status == HttpStatus.OK.value()
+        Lead lead = objectMapper.readValue(response.getContentAsString(), Lead.class)
+        lead.getId() == 1
+        lead.getCreationDate().toString() == 'Wed Oct 26 18:31:08 CEST 2022'
+        lead.getEndingDate() == null
+        lead.getAdministrativeRent() == "333"
+        lead.getElectricityPayment() == "123"
+        lead.getWaterPayment() == "222"
+        lead.getLeadStatus().getId() == 1
+        lead.getProperty().getId() == 1
+        lead.getOwner() == "owner"
+        lead.getTenant() == "tenant"
+    }
+    def 'Should delete Lead and HTTP 200'(){
+        when:
+        def response = mvc.perform(MockMvcRequestBuilders.delete("/lead/delete/1")).andReturn().response
+
+        then:
+        response!=null
+        response.status == HttpStatus.OK.value()
+    }
 }
