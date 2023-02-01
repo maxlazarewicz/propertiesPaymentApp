@@ -12,9 +12,7 @@ import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.web.servlet.config.annotation.EnableWebMvc
 import pl.payment.main.domain.models.property.Property
-import pl.payment.main.domain.repository.property.PropertyRepository
-import pl.payment.main.domain.service.property.PropertyService
-import pl.payment.main.infrastructure.config.TestConfig
+
 import spock.lang.Shared
 import spock.lang.Specification
 

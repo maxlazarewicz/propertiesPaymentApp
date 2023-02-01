@@ -12,7 +12,7 @@ import pl.payment.main.domain.service.property.PropertyService;
 @Slf4j
 @RestController
 @RequestMapping("/property")
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@CrossOrigin(origins = {"http://localhost:8082"}, allowedHeaders = "*")
 @AllArgsConstructor
 public class PropertyController {
 

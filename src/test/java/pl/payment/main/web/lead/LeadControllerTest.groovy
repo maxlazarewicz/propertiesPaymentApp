@@ -1,4 +1,4 @@
-package pl.payment.main.web.leadstatus
+package pl.payment.main.web.lead
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
@@ -20,7 +20,7 @@ import spock.lang.Specification
 @EnableWebMvc
 @SpringBootTest
 
-class LeadStatusControllerTest extends Specification {
+class LeadControllerTest extends Specification {
 
     @Autowired
     MockMvc mvc;

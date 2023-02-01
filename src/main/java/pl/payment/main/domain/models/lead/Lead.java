@@ -5,11 +5,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 import pl.payment.main.domain.models.property.Property;
 import pl.payment.main.domain.models.status.LeadStatus;
-import pl.payment.main.domain.models.users.Users;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 
@@ -27,16 +24,15 @@ public class Lead {
 
     @CreationTimestamp
     @DateTimeFormat
-    private Date creation_date;
+    private Date creationDate;
 
     @DateTimeFormat
     //@UpdateTimestamp??? Tworzy w momencie update'a date w bazie danych w tym wypadku.
-    private Date ending_date;
+    private Date endingDate;
 
     @ManyToOne(
             optional = false,
-            targetEntity = Property.class,
-            cascade = CascadeType.ALL
+            targetEntity = Property.class
     )
     @JoinColumn(name = "property_id")
     private Property property;

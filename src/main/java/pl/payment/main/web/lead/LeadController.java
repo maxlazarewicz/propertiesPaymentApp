@@ -40,7 +40,7 @@ public class LeadController {
     public ResponseEntity addLead(@RequestBody AddLeadPayload addLeadPayload){
         return new ResponseEntity(leadService.addLead(addLeadPayload), HttpStatus.OK);
     }
-    @DeleteMapping("/delete")
+    @DeleteMapping("/delete/{id}")
     @PreAuthorize("permitAll")
     public ResponseEntity deleteLead(@PathVariable Long id ){
         leadService.deleteLead(id);

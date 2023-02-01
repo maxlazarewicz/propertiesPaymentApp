@@ -1,4 +1,4 @@
-package pl.payment.main.web
+package pl.payment.main.web.role
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.beans.factory.annotation.Autowired

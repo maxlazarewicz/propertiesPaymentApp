@@ -73,7 +73,7 @@ public class LeadService extends Commons {
                 .administrativeRent(lead.getAdministrativeRent())
                 .electricityPayment(lead.getElectricityPayment())
                 .waterPayment(lead.getWaterPayment())
-                .creationDate(lead.getCreation_date())
+                .creationDate(lead.getCreationDate())
                 .build();
     }
 }

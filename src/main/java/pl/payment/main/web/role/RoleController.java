@@ -38,7 +38,7 @@ public class RoleController {
         return new ResponseEntity(roleService.addRole(roles), HttpStatus.OK);
     }
 
-    @DeleteMapping("/role/{id}")
+    @DeleteMapping("/delete/{id}")
     @PreAuthorize("permitAll")
     public ResponseEntity deleteRole(@PathVariable Long id) {
         roleService.deleteRole(id);
